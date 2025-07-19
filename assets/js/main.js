@@ -193,4 +193,118 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transform = 'translateY(-10px)';
     });
   });
+
+  // DARK MODE TOGGLE
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+  // Load dark mode preference
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+  darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+  });
+
+  // GALLERY MODAL
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryModal = document.getElementById('galleryModal');
+  const modalImage = document.getElementById('modalImage');
+  const closeGalleryModal = document.getElementById('closeGalleryModal');
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-image');
+      modalImage.src = imgSrc;
+      galleryModal.classList.add('active');
+      modalImage.focus();
+    });
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.click();
+      }
+    });
+  });
+  closeGalleryModal.addEventListener('click', () => {
+    galleryModal.classList.remove('active');
+    modalImage.src = '';
+  });
+  galleryModal.addEventListener('click', (e) => {
+    if (e.target === galleryModal) {
+      galleryModal.classList.remove('active');
+      modalImage.src = '';
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (galleryModal.classList.contains('active') && (e.key === 'Escape')) {
+      galleryModal.classList.remove('active');
+      modalImage.src = '';
+    }
+  });
+
+  // SEARCH FUNCTIONALITY
+  const siteSearch = document.getElementById('siteSearch');
+  if (siteSearch) {
+    siteSearch.addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      // Blog posts
+      document.querySelectorAll('.blog-post').forEach(post => {
+        const title = post.getAttribute('data-title').toLowerCase();
+        const tags = post.getAttribute('data-tags').toLowerCase();
+        const text = post.textContent.toLowerCase();
+        if (title.includes(query) || tags.includes(query) || text.includes(query)) {
+          post.style.display = '';
+          highlightSearch(post, query);
+        } else {
+          post.style.display = 'none';
+        }
+      });
+      // Gallery
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        const alt = item.querySelector('img').alt.toLowerCase();
+        if (alt.includes(query)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      // Projects
+      document.querySelectorAll('.project-card').forEach(card => {
+        const title = card.querySelector('.project-title').textContent.toLowerCase();
+        const desc = card.querySelector('.project-description').textContent.toLowerCase();
+        if (title.includes(query) || desc.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+    function highlightSearch(element, query) {
+      if (!query) {
+        element.innerHTML = element.innerHTML.replace(/<span class="search-highlight">(.*?)<\/span>/g, '$1');
+        return;
+      }
+      const regex = new RegExp(`(${query})`, 'gi');
+      element.innerHTML = element.innerHTML.replace(/<span class="search-highlight">(.*?)<\/span>/g, '$1');
+      element.innerHTML = element.innerHTML.replace(regex, '<span class="search-highlight">$1</span>');
+    }
+  }
+
+  // NEWSLETTER FORM
+  const newsletterForm = document.getElementById('newsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('newsletterEmail').value;
+      alert(`Thank you for subscribing, ${email}!`);
+      newsletterForm.reset();
+    });
+  }
 });

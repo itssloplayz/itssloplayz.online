@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="itssloplayz | Portfolio, blog, gallery, and more. Web developer, designer, and creator.">
+  <meta name="keywords" content="itssloplayz, portfolio, blog, gallery, web developer, javascript, html, css, lua">
+  <meta name="author" content="itssloplayz">
 </head>
 <body>
   <div class="cursor"></div>
@@ -32,8 +35,11 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#projects" class="nav-link">Projects</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#blog" class="nav-link">Blog</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
+      <button id="darkModeToggle" aria-label="Toggle dark mode" class="dark-mode-toggle"><i class="fas fa-moon"></i></button>
       <div class="hamburger">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -55,6 +61,7 @@
         <div class="hero-cta animate-text-delay">
           <a href="#projects" class="btn primary-btn">View Projects</a>
           <a href="#contact" class="btn secondary-btn">Contact Me</a>
+          <a href="https://github.com/itssloplayz" class="btn primary-btn" target="_blank" rel="noopener" aria-label="Follow me on GitHub"><i class="fab fa-github"></i> GitHub</a>
         </div>
       </div>
     </div>
@@ -222,6 +229,70 @@
     </div>
   </section>
 
+  <!-- Search Bar -->
+  <section class="search-section">
+    <div class="container">
+      <input type="text" id="siteSearch" placeholder="Search blog, gallery, or projects..." aria-label="Site search">
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Image Gallery</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" tabindex="0" data-image="assets/img/gallery1.jpg"><img src="assets/img/gallery1.jpg" alt="Gallery Image 1"></div>
+        <div class="gallery-item" tabindex="0" data-image="assets/img/gallery2.jpg"><img src="assets/img/gallery2.jpg" alt="Gallery Image 2"></div>
+        <div class="gallery-item" tabindex="0" data-image="assets/img/gallery3.jpg"><img src="assets/img/gallery3.jpg" alt="Gallery Image 3"></div>
+        <!-- Add more images as needed -->
+      </div>
+    </div>
+    <!-- Modal for image preview -->
+    <div class="gallery-modal" id="galleryModal" aria-modal="true" role="dialog" tabindex="-1">
+      <span class="close-modal" id="closeGalleryModal" aria-label="Close gallery modal">&times;</span>
+      <img class="modal-content" id="modalImage" alt="Gallery Preview">
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Blog</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="blog-list" id="blogList">
+        <article class="blog-post" data-title="Welcome to My Blog" data-tags="intro,personal">
+          <h3>Welcome to My Blog</h3>
+          <p class="blog-meta">Posted on <time datetime="2024-06-01">June 1, 2024</time></p>
+          <p>Hello world! This is my first blog post. Stay tuned for more updates and tech tips!</p>
+        </article>
+        <article class="blog-post" data-title="How I Built This Site" data-tags="webdev,portfolio">
+          <h3>How I Built This Site</h3>
+          <p class="blog-meta">Posted on <time datetime="2024-06-02">June 2, 2024</time></p>
+          <p>Learn about the tools and tricks I used to create this portfolio, including HTML, CSS, and JavaScript.</p>
+        </article>
+        <!-- Add more blog posts as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup Section -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Subscribe to My Newsletter</h2>
+        <form id="newsletterForm" class="newsletter-form" autocomplete="off">
+          <input type="email" id="newsletterEmail" name="email" placeholder="Your Email" aria-label="Your Email" required>
+          <button type="submit" class="btn primary-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
@@ -299,18 +370,21 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-text">
-          <p>&copy; 2025 itssloplayz. All Rights Reserved.</p>
-        </div>
-        <div class="footer-links">
-          <a href="#hero" class="footer-link">Home</a>
-          <a href="#about" class="footer-link">About</a>
-          <a href="#skills" class="footer-link">Skills</a>
-          <a href="#projects" class="footer-link">Projects</a>
-          <a href="#contact" class="footer-link">Contact</a>
-        </div>
+    <div class="container footer-content">
+      <div class="footer-text">
+        <p>&copy; 2024 itssloplayz. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about" class="footer-link">About</a>
+        <a href="#projects" class="footer-link">Projects</a>
+        <a href="#blog" class="footer-link">Blog</a>
+        <a href="#contact" class="footer-link">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://github.com/itssloplayz" class="social-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/itssloplayz" class="social-link" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com/@itssloplayz" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <!-- Add more social links as needed -->
       </div>
     </div>
   </footer>
