@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>itssloplayz | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+
+  <!-- Loader -->
+  <div class="loader">
+    <div class="loader-content">
+      <div class="loader-circle"></div>
+      <div class="loader-text">Loading...</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">
+        <a href="#hero">itssloplayz</a>
+      </div>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="animate-text">Hi, I'm <span class="highlight">itssloplayz</span></h1>
+        <div class="typing-container">
+          <span class="static-text">I'm a </span>
+          <span class="dynamic-text"></span>
+        </div>
+        <p class="hero-description animate-text-delay">Building cool stuff with Lua, JavaScript, and HTML</p>
+        <div class="hero-cta animate-text-delay">
+          <a href="#projects" class="btn primary-btn">View Projects</a>
+          <a href="#contact" class="btn secondary-btn">Contact Me</a>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <div>
+        <span class="scroll-arrow"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-content">
+        <div class="about-text reveal">
+          <div class="about-info">
+            <div class="info-item">
+              <span class="info-label">Name:</span>
+              <span class="info-value">itssloplayz</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Age:</span>
+              <span class="info-value">15</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Location:</span>
+              <span class="info-value">Slovenia 🇸🇮</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Focus:</span>
+              <span class="info-value">Building cool stuff with Lua, JavaScript, and HTML</span>
+            </div>
+          </div>
+          <p class="about-description">
+            🧠 Always learning, always exploring new tech<br>
+            🛠️ Working on futuristic and creative projects<br>
+            🤝 Open to collaborate on innovative ideas
+          </p>
+          <div class="quote">
+            <i class="fas fa-quote-left"></i>
+            <p>The best way to predict the future is to code it.</p>
+            <i class="fas fa-quote-right"></i>
+          </div>
+        </div>
+        <div class="about-image reveal">
+          <div class="image-container">
+            <div class="image-box">
+              <div class="image-placeholder">
+                <i class="fas fa-user"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">My Futuristic Toolbox</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-content">
+        <div class="skills-category reveal">
+          <h3 class="category-title">Languages</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <i class="fab fa-medium"></i>
+              </div>
+              <span class="skill-name">Lua</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon">
+                <i class="fab fa-js"></i>
+              </div>
+              <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon">
+                <i class="fab fa-html5"></i>
+              </div>
+              <span class="skill-name">HTML5</span>
+            </div>
+          </div>
+        </div>
+        <div class="skills-category reveal">
+          <h3 class="category-title">Tools</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <span class="skill-name">VSCode</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon">
+                <i class="fab fa-github"></i>
+              </div>
+              <span class="skill-name">GitHub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">My Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal" data-delay="0">
+          <div class="project-content">
+            <h3 class="project-title">Project 1</h3>
+            <p class="project-description">A futuristic project built with Lua</p>
+            <div class="project-tech">
+              <span class="tech-tag">Lua</span>
+              <span class="tech-tag">HTML5</span>
+            </div>
+            <a href="#" class="project-link" target="_blank">
+              View Project <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card reveal" data-delay="200">
+          <div class="project-content">
+            <h3 class="project-title">Project 2</h3>
+            <p class="project-description">Creative JavaScript application</p>
+            <div class="project-tech">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML5</span>
+            </div>
+            <a href="#" class="project-link" target="_blank">
+              View Project <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-card reveal" data-delay="400">
+          <div class="project-content">
+            <h3 class="project-title">Project 3</h3>
+            <p class="project-description">Innovative web experience</p>
+            <div class="project-tech">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML5</span>
+            </div>
+            <a href="#" class="project-link" target="_blank">
+              View Project <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-content">
+        <div class="contact-form-container reveal">
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+              <label for="name">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder="Your Email" required>
+              <label for="email">Your Email</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" placeholder="Subject" required>
+              <label for="subject">Subject</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+              <label for="message">Your Message</label>
+            </div>
+            <button type="submit" class="btn primary-btn submit-btn">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Location</h3>
+              <p>Slovenia 🇸🇮</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Email</h3>
+              <p>contact@itssloplayz.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="contact-text">
+              <h3>Social</h3>
+              <div class="social-links">
+                <a href="https://github.com/itssloplayz" target="_blank" class="social-link">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                  <i class="fab fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 itssloplayz. All Rights Reserved.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#hero" class="footer-link">Home</a>
+          <a href="#about" class="footer-link">About</a>
+          <a href="#skills" class="footer-link">Skills</a>
+          <a href="#projects" class="footer-link">Projects</a>
+          <a href="#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
