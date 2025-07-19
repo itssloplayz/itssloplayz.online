@@ -7,7 +7,7 @@ Welcome to the **source code** of my futuristic and interactive personal portfol
 
 ## 🌐 Live Preview
 
-**🔗 Website:** [https://itssloplayz.com](https://itssloplayz.com)
+**🔗 Website:** [https://itssloplayz.com](https://itssloplayz.online)
 
 ---
 
@@ -55,11 +55,7 @@ This portfolio is more than just HTML and CSS — it’s an experience:
 
 ---
 
-## 🧪 Preview
 
-![Screenshot](https://your-screenshot-url.com/image.png) <!-- Optional: Replace with your image link -->
-
----
 
 ## 📬 Contact
 
