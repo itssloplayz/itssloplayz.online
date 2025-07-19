@@ -1,6 +1,4 @@
-Thanks for the clarification! Here's a **futuristic, interactive-feeling `README.md`** for your **project repository** (like your portfolio site), written in a smooth, GitHub-friendly Markdown style:
 
----
 
 ```markdown
 # 🌐 itssloplayz Portfolio
