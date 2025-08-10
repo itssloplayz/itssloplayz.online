@@ -7,7 +7,7 @@ Welcome to the **source code** of my futuristic and interactive personal portfol
 
 ## 🌐 Live Preview
 
-**🔗 Website:** [https://itssloplayz.com](https://itssloplayz.online)
+**🔗 Website:** [https://itssloplayz.online](https://itssloplayz.online)
 
 ---
 
