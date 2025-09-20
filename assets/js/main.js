@@ -1,5 +1,15 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', () => {
+  // Easter Egg: Console Message
+  console.log(`
+    ╔══════════════════════════════════════╗
+    ║  🎮 Hey there!    ║
+    ║  Welcome to my portfolio's console   ║
+    ║  Try to find all the Easter eggs!    ║
+    ║  Hint: Try the Konami Code ;)        ║
+    ╚══════════════════════════════════════╝
+  `);
+  
   // Initialize loader
   const loader = document.querySelector('.loader');
   
@@ -112,6 +122,198 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Initialize reveal on page load
   revealElements();
+
+  // Easter Egg: Snake Game
+  let typedKeys = '';
+  const snakeWord = 'snake';
+  
+  document.addEventListener('keydown', (e) => {
+    typedKeys += e.key.toLowerCase();
+    typedKeys = typedKeys.slice(-snakeWord.length);
+    
+    if (typedKeys === snakeWord) {
+      createSnakeGame();
+    }
+  });
+
+  // Easter Egg: Matrix Rain
+  let matrixWord = 'matrix';
+  
+  document.addEventListener('keydown', (e) => {
+    typedKeys += e.key.toLowerCase();
+    typedKeys = typedKeys.slice(-matrixWord.length);
+    
+    if (typedKeys === matrixWord) {
+      createMatrixRain();
+    }
+  });
+
+  function createMatrixRain() {
+    if (document.getElementById('matrix-container')) return;
+
+    const container = document.createElement('div');
+    container.id = 'matrix-container';
+    const canvas = document.createElement('canvas');
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '×';
+    closeBtn.className = 'matrix-close';
+    
+    container.appendChild(canvas);
+    container.appendChild(closeBtn);
+    document.body.appendChild(container);
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const nums = '0123456789';
+    const alphabet = katakana + latin + nums;
+
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const raindrops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0F0';
+      ctx.font = fontSize + 'px monospace';
+
+      for(let i = 0; i < raindrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        ctx.fillText(text, i * fontSize, raindrops[i] * fontSize);
+        
+        if(raindrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          raindrops[i] = 0;
+        }
+        raindrops[i]++;
+      }
+    }
+
+    let matrixInterval = setInterval(draw, 30);
+
+    closeBtn.addEventListener('click', () => {
+      clearInterval(matrixInterval);
+      container.remove();
+    });
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      raindrops.length = Math.floor(canvas.width / fontSize);
+      raindrops.fill(1);
+    });
+  }
+
+  function createSnakeGame() {
+    if (document.getElementById('snake-game')) return;
+
+    const gameContainer = document.createElement('div');
+    gameContainer.id = 'snake-game';
+    gameContainer.innerHTML = `
+      <div class="snake-header">
+        <span class="snake-score">Score: 0</span>
+        <button class="snake-close">&times;</button>
+      </div>
+      <canvas id="snake-canvas"></canvas>
+    `;
+    document.body.appendChild(gameContainer);
+
+    const canvas = document.getElementById('snake-canvas');
+    const ctx = canvas.getContext('2d');
+    const closeBtn = gameContainer.querySelector('.snake-close');
+    const scoreDisplay = gameContainer.querySelector('.snake-score');
+
+    canvas.width = 400;
+    canvas.height = 400;
+    const gridSize = 20;
+    let snake = [{ x: 10, y: 10 }];
+    let food = { x: 15, y: 15 };
+    let direction = 'right';
+    let score = 0;
+    let gameLoop;
+
+    function drawSnake() {
+      ctx.fillStyle = '#4CAF50';
+      snake.forEach(segment => {
+        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+      });
+    }
+
+    function drawFood() {
+      ctx.fillStyle = '#FF4081';
+      ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+    }
+
+    function moveSnake() {
+      const head = { ...snake[0] };
+      switch (direction) {
+        case 'up': head.y--; break;
+        case 'down': head.y++; break;
+        case 'left': head.x--; break;
+        case 'right': head.x++; break;
+      }
+
+      if (head.x < 0) head.x = canvas.width / gridSize - 1;
+      if (head.x >= canvas.width / gridSize) head.x = 0;
+      if (head.y < 0) head.y = canvas.height / gridSize - 1;
+      if (head.y >= canvas.height / gridSize) head.y = 0;
+
+      if (head.x === food.x && head.y === food.y) {
+        score += 10;
+        scoreDisplay.textContent = 'Score: ' + score;
+        food = {
+          x: Math.floor(Math.random() * (canvas.width / gridSize)),
+          y: Math.floor(Math.random() * (canvas.height / gridSize))
+        };
+      } else {
+        snake.pop();
+      }
+
+      if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+        endGame();
+        return;
+      }
+
+      snake.unshift(head);
+    }
+
+    function endGame() {
+      clearInterval(gameLoop);
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#fff';
+      ctx.font = '20px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Game Over! Score: ' + score, canvas.width / 2, canvas.height / 2);
+    }
+
+    function updateGame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawFood();
+      moveSnake();
+      drawSnake();
+    }
+
+    document.addEventListener('keydown', function handleKeyPress(e) {
+      switch (e.key) {
+        case 'ArrowUp': if (direction !== 'down') direction = 'up'; break;
+        case 'ArrowDown': if (direction !== 'up') direction = 'down'; break;
+        case 'ArrowLeft': if (direction !== 'right') direction = 'left'; break;
+        case 'ArrowRight': if (direction !== 'left') direction = 'right'; break;
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      clearInterval(gameLoop);
+      gameContainer.remove();
+    });
+
+    gameLoop = setInterval(updateGame, 100);
+  }
   
   // Custom cursor
   const cursor = document.querySelector('.cursor');
@@ -125,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       cursorFollower.style.left = e.clientX + 'px';
       cursorFollower.style.top = e.clientY + 'px';
-    }, 100);
+    }, 50);
   });
   
   // Cursor effects on hover
@@ -151,16 +353,112 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contactForm');
   
   if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+    // Form validation function
+    const validateForm = (formData) => {
+      const errors = {};
+      const email = formData.get('email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (!formData.get('name').trim()) {
+        errors.name = 'Name is required';
+      }
+      
+      if (!email.trim()) {
+        errors.email = 'Email is required';
+      } else if (!emailRegex.test(email)) {
+        errors.email = 'Please enter a valid email address';
+      }
+      
+      if (!formData.get('subject').trim()) {
+        errors.subject = 'Subject is required';
+      }
+      
+      if (!formData.get('message').trim()) {
+        errors.message = 'Message is required';
+      }
+      
+      return errors;
+    };
+
+    // Clear error messages
+    const clearErrors = () => {
+      document.querySelectorAll('.error-message').forEach(el => el.remove());
+      document.querySelectorAll('.form-group').forEach(el => el.classList.remove('error'));
+    };
+
+    // Show error message
+    const showError = (inputElement, message) => {
+      const formGroup = inputElement.closest('.form-group');
+      formGroup.classList.add('error');
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message';
+      errorDiv.textContent = message;
+      formGroup.appendChild(errorDiv);
+    };
+
+    // Show success message
+    const showSuccess = () => {
+      const successMessage = document.createElement('div');
+      successMessage.className = 'success-message';
+      successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
+      contactForm.insertBefore(successMessage, contactForm.firstChild);
+      setTimeout(() => successMessage.remove(), 5000);
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      clearErrors();
       
-      // Get form data
+      const submitBtn = contactForm.querySelector('.submit-btn');
+      const originalBtnText = submitBtn.innerHTML;
       const formData = new FormData(contactForm);
-      const formValues = Object.fromEntries(formData.entries());
+      const errors = validateForm(formData);
       
-      // Simulate form submission (replace with actual form processing)
-      alert(`Thank you for your message, ${formValues.name}! I'll get back to you soon.`);
-      contactForm.reset();
+      if (Object.keys(errors).length > 0) {
+        for (const [field, message] of Object.entries(errors)) {
+          const input = contactForm.querySelector(`[name="${field}"]`);
+          showError(input, message);
+        }
+        return;
+      }
+      
+      try {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Create the request body
+        const requestData = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          subject: formData.get('subject'),
+          message: formData.get('message')
+        };
+
+        // You can use a service like EmailJS, FormSpree, or your own backend
+        // For this example, we'll use FormSpree (replace with your FormSpree endpoint)
+        const response = await fetch('https://formspree.io/f/mgvlgbkp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestData)
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to send message');
+        }
+
+        showSuccess();
+        contactForm.reset();
+      } catch (error) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = 'Failed to send message. Please try again later.';
+        contactForm.insertBefore(errorMessage, contactForm.firstChild);
+      } finally {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      }
     });
   }
   
@@ -213,41 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // GALLERY MODAL
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const galleryModal = document.getElementById('galleryModal');
-  const modalImage = document.getElementById('modalImage');
-  const closeGalleryModal = document.getElementById('closeGalleryModal');
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const imgSrc = item.getAttribute('data-image');
-      modalImage.src = imgSrc;
-      galleryModal.classList.add('active');
-      modalImage.focus();
-    });
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        item.click();
-      }
-    });
-  });
-  closeGalleryModal.addEventListener('click', () => {
-    galleryModal.classList.remove('active');
-    modalImage.src = '';
-  });
-  galleryModal.addEventListener('click', (e) => {
-    if (e.target === galleryModal) {
-      galleryModal.classList.remove('active');
-      modalImage.src = '';
-    }
-  });
-  document.addEventListener('keydown', (e) => {
-    if (galleryModal.classList.contains('active') && (e.key === 'Escape')) {
-      galleryModal.classList.remove('active');
-      modalImage.src = '';
-    }
-  });
+  // Gallery code removed
 
   // SEARCH FUNCTIONALITY
   const siteSearch = document.getElementById('siteSearch');
@@ -266,15 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
           post.style.display = 'none';
         }
       });
-      // Gallery
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        const alt = item.querySelector('img').alt.toLowerCase();
-        if (alt.includes(query)) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
-      });
+      // Gallery search removed
       // Projects
       document.querySelectorAll('.project-card').forEach(card => {
         const title = card.querySelector('.project-title').textContent.toLowerCase();
@@ -306,5 +562,117 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(`Thank you for subscribing, ${email}!`);
       newsletterForm.reset();
     });
+  }
+
+  // Easter Egg: Konami Code
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIndex = 0;
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        activateKonamiCode();
+        konamiIndex = 0;
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  function activateKonamiCode() {
+    // Create floating game elements
+    const gameElements = ['🎮', '👾', '🕹️', '🎲', '🎯', '🎪'];
+    const container = document.createElement('div');
+    container.className = 'konami-container';
+    document.body.appendChild(container);
+
+    // Add floating elements
+    for (let i = 0; i < 20; i++) {
+      const element = document.createElement('span');
+      element.className = 'konami-element';
+      element.textContent = gameElements[Math.floor(Math.random() * gameElements.length)];
+      element.style.left = Math.random() * 100 + 'vw';
+      element.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      element.style.animationDelay = (Math.random() * 2) + 's';
+      container.appendChild(element);
+    }
+
+    // Play 8-bit sound
+    const audio = new Audio('assets/audio/powerup.mp3');
+    audio.volume = 0.2;
+    audio.play().catch(() => {}); // Ignore if audio fails to play
+
+    // Remove after animation
+    setTimeout(() => {
+      container.remove();
+    }, 10000);
+  }
+
+  // Easter Egg: Secret Theme
+  const logo = document.querySelector('.logo a');
+  let clickCount = 0;
+  let clickTimer;
+
+  if (logo) {
+    logo.addEventListener('click', (e) => {
+      e.preventDefault();
+      clickCount++;
+      
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 3000);
+
+      if (clickCount === 5) {
+        activateSecretTheme();
+        clickCount = 0;
+      }
+    });
+  }
+
+  function activateSecretTheme() {
+    const root = document.documentElement;
+    const isRetroActive = document.body.classList.toggle('retro-theme');
+    
+    if (isRetroActive) {
+      // Save current theme
+      const currentTheme = {
+        primary: getComputedStyle(root).getPropertyValue('--primary-color'),
+        secondary: getComputedStyle(root).getPropertyValue('--secondary-color'),
+        accent: getComputedStyle(root).getPropertyValue('--accent-color'),
+        dark: getComputedStyle(root).getPropertyValue('--dark-color')
+      };
+      
+      localStorage.setItem('previous-theme', JSON.stringify(currentTheme));
+      
+      // Apply retro theme
+      root.style.setProperty('--primary-color', '#ffd866');
+      root.style.setProperty('--secondary-color', '#ff6188');
+      root.style.setProperty('--accent-color', '#ab9df2');
+      root.style.setProperty('--dark-color', '#2d2a2e');
+      
+      // Add retro effects
+      document.body.classList.add('crt-effect');
+      
+      // Show retro mode message
+      const message = document.createElement('div');
+      message.className = 'retro-message';
+      message.innerHTML = 'RETRO MODE ACTIVATED!';
+      document.body.appendChild(message);
+      
+      setTimeout(() => message.remove(), 3000);
+    } else {
+      // Restore previous theme
+      const previousTheme = JSON.parse(localStorage.getItem('previous-theme'));
+      if (previousTheme) {
+        Object.entries(previousTheme).forEach(([key, value]) => {
+          root.style.setProperty(`--${key}-color`, value);
+        });
+      }
+      
+      // Remove retro effects
+      document.body.classList.remove('crt-effect');
+    }
   }
 });

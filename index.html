@@ -35,8 +35,6 @@
         <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#projects" class="nav-link">Projects</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
-        <a href="#blog" class="nav-link">Blog</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
       <button id="darkModeToggle" aria-label="Toggle dark mode" class="dark-mode-toggle"><i class="fas fa-moon"></i></button>
@@ -103,8 +101,8 @@
             </div>
           </div>
           <p class="about-description">
-            🧠 Always learning, always exploring new tech<br>
-            🛠️ Working on futuristic and creative projects<br>
+            🧠 Always learning<br>
+            🛠️ Working on creative projects<br>
             🤝 Open to collaborate on innovative ideas
           </p>
           <div class="quote">
@@ -141,7 +139,7 @@
               <div class="skill-icon">
                 <i class="fab fa-medium"></i>
               </div>
-              <span class="skill-name">Lua</span>
+              <span class="skill-name">Lua/Luau</span>
             </div>
             <div class="skill-item">
               <div class="skill-icon">
@@ -188,8 +186,8 @@
       <div class="projects-grid">
         <div class="project-card reveal" data-delay="0">
           <div class="project-content">
-            <h3 class="project-title">Project 1</h3>
-            <p class="project-description">A futuristic project built with Lua</p>
+            <h3 class="project-title">Let's Talk</h3>
+            <p class="project-description">A hangout roblox game scripted with luau.</p>
             <div class="project-tech">
               <span class="tech-tag">Lua</span>
               <span class="tech-tag">HTML5</span>
@@ -201,15 +199,12 @@
         </div>
         <div class="project-card reveal" data-delay="200">
           <div class="project-content">
-            <h3 class="project-title">Project 2</h3>
-            <p class="project-description">Creative JavaScript application</p>
+            <h3 class="project-title">My website</h3>
+            <p class="project-description">Something about myself (:</p>
             <div class="project-tech">
               <span class="tech-tag">JavaScript</span>
               <span class="tech-tag">HTML5</span>
             </div>
-            <a href="#" class="project-link" target="_blank">
-              View Project <i class="fas fa-arrow-right"></i>
-            </a>
           </div>
         </div>
         <div class="project-card reveal" data-delay="400">
@@ -220,9 +215,6 @@
               <span class="tech-tag">JavaScript</span>
               <span class="tech-tag">HTML5</span>
             </div>
-            <a href="#" class="project-link" target="_blank">
-              View Project <i class="fas fa-arrow-right"></i>
-            </a>
           </div>
         </div>
       </div>
@@ -232,33 +224,14 @@
   <!-- Search Bar -->
   <section class="search-section">
     <div class="container">
-      <input type="text" id="siteSearch" placeholder="Search blog, gallery, or projects..." aria-label="Site search">
+      <input type="text" id="siteSearch" placeholder="Search blog or projects..." aria-label="Site search">
     </div>
   </section>
 
-  <!-- Gallery Section -->
-  <section id="gallery" class="gallery">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Image Gallery</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item" tabindex="0" data-image="assets/img/gallery1.jpg"><img src="assets/img/gallery1.jpg" alt="Gallery Image 1"></div>
-        <div class="gallery-item" tabindex="0" data-image="assets/img/gallery2.jpg"><img src="assets/img/gallery2.jpg" alt="Gallery Image 2"></div>
-        <div class="gallery-item" tabindex="0" data-image="assets/img/gallery3.jpg"><img src="assets/img/gallery3.jpg" alt="Gallery Image 3"></div>
-        <!-- Add more images as needed -->
-      </div>
-    </div>
-    <!-- Modal for image preview -->
-    <div class="gallery-modal" id="galleryModal" aria-modal="true" role="dialog" tabindex="-1">
-      <span class="close-modal" id="closeGalleryModal" aria-label="Close gallery modal">&times;</span>
-      <img class="modal-content" id="modalImage" alt="Gallery Preview">
-    </div>
-  </section>
+
 
   <!-- Blog Section -->
-  <section id="blog" class="blog">
+  <!-- <section id="blog" class="blog">
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Blog</h2>
@@ -275,12 +248,11 @@
           <p class="blog-meta">Posted on <time datetime="2024-06-02">June 2, 2024</time></p>
           <p>Learn about the tools and tricks I used to create this portfolio, including HTML, CSS, and JavaScript.</p>
         </article>
-        <!-- Add more blog posts as needed -->
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <!-- Newsletter Signup Section -->
+  <!-- Newsletter Signup Section
   <section class="newsletter">
     <div class="container">
       <div class="newsletter-content">
@@ -292,6 +264,7 @@
       </div>
     </div>
   </section>
+   -->
 
   <!-- Contact Section -->
   <section id="contact" class="contact">
@@ -302,7 +275,7 @@
       </div>
       <div class="contact-content">
         <div class="contact-form-container reveal">
-          <form class="contact-form" id="contactForm">
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
             <div class="form-group">
               <input type="text" id="name" name="name" placeholder="Your Name" required>
               <label for="name">Your Name</label>
@@ -340,8 +313,8 @@
               <i class="fas fa-envelope"></i>
             </div>
             <div class="contact-text">
-              <h3>Email</h3>
-              <p>contact@itssloplayz.com</p>
+              <h3>Discord</h3>
+              <p>@itssloplayz</p>
             </div>
           </div>
           <div class="contact-item">
@@ -353,12 +326,6 @@
               <div class="social-links">
                 <a href="https://github.com/itssloplayz" target="_blank" class="social-link">
                   <i class="fab fa-github"></i>
-                </a>
-                <a href="#" class="social-link">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link">
-                  <i class="fab fa-linkedin"></i>
                 </a>
               </div>
             </div>
@@ -377,14 +344,11 @@
       <div class="footer-links">
         <a href="#about" class="footer-link">About</a>
         <a href="#projects" class="footer-link">Projects</a>
-        <a href="#blog" class="footer-link">Blog</a>
+       <!-- <a href="#blog" class="footer-link">Blog</a> -->
         <a href="#contact" class="footer-link">Contact</a>
       </div>
       <div class="footer-social">
         <a href="https://github.com/itssloplayz" class="social-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://twitter.com/itssloplayz" class="social-link" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://youtube.com/@itssloplayz" class="social-link" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <!-- Add more social links as needed -->
       </div>
     </div>
   </footer>
